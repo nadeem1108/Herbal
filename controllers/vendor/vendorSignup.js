@@ -1,4 +1,6 @@
 const VendorDB = require("../../modules/vendorModel");
+var bcrypt = require("bcryptjs");
+var jwt = require("jsonwebtoken");
 
 // Load input validations
 const validateRegisterInput = require("../../validation/vendorValidation");
@@ -11,40 +13,37 @@ module.exports = (req, res, next) => {
     return res.status(400).json(error);
   }
 
-  const {
-    name,
-    email,
-    password,
-    contact,
-    companyName,
-    logo,
-    address,
-    state,
-    pincode,
-  } = req.body;
-
-  const vendor = new VendorDB({
-    name,
-    email,
-    password,
-    contact,
-    companyName,
-    logo,
-    address,
-    state,
-    pincode,
+  const { name, email, password, contact, address, state, pincode } = req.body;
+  bcrypt.hash(password, 10, function (err, hash) {
+    if (err) {
+      return res.json({
+        msg: "Somthing Wrong, Try Later !",
+        err: err,
+      });
+    } else {
+      var vendor = new VendorDB({
+        name: name,
+        email: email,
+        password: hash,
+        contact: contact,
+        address: address,
+        state: state,
+        pincode: pincode,
+      });
+      vendor
+        .save()
+        .then((result) => {
+          res.status(201).json({
+            msg: "Data Added successfully",
+            result: result,
+          });
+        })
+        .catch((err) => {
+          res.status(500).send({
+            mesaage: err.message || "some error occured while creating Vendor",
+          });
+        });
+    }
   });
-  vendor
-    .save()
-    .then((data) => {
-      res.status(201).json({
-        msg: "Data added successfully",
-        data: data,
-      });
-    })
-    .catch((err) => {
-      res.status(500).send({
-        mesaage: err.message || "some error occured while creating Vendor",
-      });
-    });
 };
+
