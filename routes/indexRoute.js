@@ -8,6 +8,7 @@ router.use("/category", require("./categoryRoute"));
 router.use("/sub-category", require("./subCategoryRoute"));
 router.use("/product", require("./productRoute"));
 router.use("/vendor", require("./vendorRoute"));
+router.use("/admin", require("./AdminRoutes"));
 
 
 module.exports = router;

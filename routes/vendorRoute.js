@@ -12,7 +12,7 @@ const vendorDelete = require('../controllers/vendor/vendorDelete')
 
 
 //  Routes
-router.post("/create", vendorSignup);
+router.post("/signup", vendorSignup);
 router.get("/find",  vendorFind);
 router.get("/find/:id",  vendorFindOne);
 router.put("/update/:id",  vendorUpdate);

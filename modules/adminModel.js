@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const vendorSchema = new mongoose.Schema({
+const adminSchema = new mongoose.Schema({
   name: {
     type: String,
     require:true,
@@ -20,15 +20,7 @@ const vendorSchema = new mongoose.Schema({
   contact: {
     type: Number,
   },
-
-  companyName: {
-    type: String,
-  },
-
-  logo: {
-    type: String,
-  },
-
+  
   createdDate: {
     type: Date,
     default: Date.now,
@@ -52,5 +44,5 @@ const vendorSchema = new mongoose.Schema({
   },
 });
 
-const Vendor = mongoose.model("Vendor", vendorSchema);
-module.exports = Vendor;
+const AdminDB = mongoose.model("AdminDB", adminSchema);
+module.exports = AdminDB;
