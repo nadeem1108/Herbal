@@ -1,26 +1,27 @@
 const SubCategory = require("../../modules/subCategoryModel");
 
-
 // Load input validations
-// const validateRegisterInput = require("../../validations/addAcademicClass");
+const validateRegisterInput = require("../../validation/subCategoryValidation");
 
 module.exports = (req, res, next) => {
-//   const { errors, isValid } = validateRegisterInput(req.body);
-  
+    const { errors, isValid } = validateRegisterInput(req.body);
+
   // Check Validation
-//   if (!isValid) {
-//     return res.status(400).json(errors);
-//   }
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
   const id = req.params.id;
-  SubCategory
-    .findByIdAndUpdate(id, req.body, { userFindAndModify: true })
+  SubCategory.findByIdAndUpdate(id, req.body, { userFindAndModify: true })
     .then((data) => {
       if (!data) {
         res
           .status(400)
           .send({ message: "error whie finding data of particular id" });
       } else {
-        res.send(data);
+        res.status(200).json({
+          msg: "Data Updated successfully",
+          data: data,
+        });
       }
     })
     .catch((err) => {

@@ -4,14 +4,13 @@ const ProductDB = require("../../modules/productModel");
 const validateRegisterInput = require("../../validation/productValidation");
 
 module.exports = (req, res, next) => {
-    const { error, isValid } = validateRegisterInput(req.body);
+  const { error, isValid } = validateRegisterInput(req.body);
 
-    
   // Check Validation
 
-    if (!isValid) {
-      return res.status(400).json(error);
-    }
+  if (!isValid) {
+    return res.status(400).json(error);
+  }
 
   const id = req.params.id;
   ProductDB.findByIdAndUpdate(id, req.body, { userFindAndModify: true })
@@ -21,7 +20,10 @@ module.exports = (req, res, next) => {
           .status(400)
           .send({ message: "error whie finding data of particular id" });
       } else {
-        res.send(data);
+        res.status(200).json({
+          msg: "Data Updated successfully",
+          data: data,
+        });
       }
     })
     .catch((err) => {
