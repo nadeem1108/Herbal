@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const categorySchema = new mongoose.Schema({
-
   vendorObjectID: {
     type: String,
   },
@@ -9,7 +8,6 @@ const categorySchema = new mongoose.Schema({
   title: {
     type: String,
     require: true,
-    require:true,
   },
 
   img: {
@@ -28,7 +26,6 @@ const categorySchema = new mongoose.Schema({
   status: {
     type: String,
   },
-  
 });
 
 const Category = mongoose.model("Category", categorySchema);

@@ -1,15 +1,18 @@
 const ProductDB = require("../../modules/productModel");
 
 // Load input validations
-// const validateRegisterInput = require("../../validations/addAcademicClass");
+const validateRegisterInput = require("../../validation/productValidation");
 
 module.exports = (req, res, next) => {
-  //   const { errors, isValid } = validateRegisterInput(req.body);
+    const { error, isValid } = validateRegisterInput(req.body);
 
+    
   // Check Validation
-  //   if (!isValid) {
-  //     return res.status(400).json(errors);
-  //   }
+
+    if (!isValid) {
+      return res.status(400).json(error);
+    }
+
   const id = req.params.id;
   ProductDB.findByIdAndUpdate(id, req.body, { userFindAndModify: true })
     .then((data) => {

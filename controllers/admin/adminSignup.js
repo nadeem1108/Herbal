@@ -1,6 +1,16 @@
 const AdminDB = require("../../modules/adminModel");
 
+// Load input validations
+const validateRegisterInput = require("../../validation/adminValidation");
+
 module.exports = (req, res, next) => {
+  const { error, isValid } = validateRegisterInput(req.body);
+
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(error);
+  }
+
   const { name, email, password, contact, address, state, pincode } = req.body;
 
   const admin = new AdminDB({
@@ -15,8 +25,10 @@ module.exports = (req, res, next) => {
   admin
     .save()
     .then((data) => {
-      res.send(data);
-    })
+      res.status(201).json({
+        msg:"Success", 
+        res:data
+    })})
     .catch((err) => {
       res.status(500).send({
         mesaage: err.message || "some error occured while creating Admin",

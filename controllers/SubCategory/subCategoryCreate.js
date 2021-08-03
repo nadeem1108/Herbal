@@ -1,8 +1,17 @@
 const SubCategory = require("../../modules/subCategoryModel");
 
-module.exports = (req, res, next) => {
-  const { title, img, des, status } = req.body;
+// Load input validations
+const validateRegisterInput = require("../../validation/subCategoryValidation");
 
+module.exports = (req, res, next) => {
+  const { error, isValid } = validateRegisterInput(req.body);
+
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(error);
+  }
+
+  const { title, img, des, status } = req.body;
 
   const subCategory = new SubCategory({
     title,
@@ -11,13 +20,16 @@ module.exports = (req, res, next) => {
     status,
   });
   subCategory
-  .save()
-  .then((data) => {
-    res.send(data);
-  })
-  .catch((err) => {
-    res.status(500).send({
-      mesaage: err.message || "some error occured while creating Sub Category",
+    .save()
+    .then((data) => {
+      res.status(201).json({
+        msg:"Success", 
+        data:data
+    })})
+    .catch((err) => {
+      res.status(500).send({
+        mesaage:
+          err.message || "some error occured while creating Sub Category",
+      });
     });
-  });
 };

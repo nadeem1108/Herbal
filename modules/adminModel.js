@@ -3,24 +3,24 @@ const mongoose = require("mongoose");
 const adminSchema = new mongoose.Schema({
   name: {
     type: String,
-    require:true,
+    require: true,
   },
 
   email: {
     type: String,
     unique: true,
-    require:true,
+    require: true,
   },
 
   password: {
     type: String,
-    require:true,
+    require: true,
   },
 
   contact: {
-    type: Number,
+    type: String,
   },
-  
+
   createdDate: {
     type: Date,
     default: Date.now,
@@ -35,7 +35,7 @@ const adminSchema = new mongoose.Schema({
   },
 
   pincode: {
-    type: Number,
+    type: String,
   },
 
   country: {

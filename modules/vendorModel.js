@@ -18,7 +18,7 @@ const vendorSchema = new mongoose.Schema({
   },
 
   contact: {
-    type: Number,
+    type: String,
   },
 
   companyName: {
@@ -43,7 +43,7 @@ const vendorSchema = new mongoose.Schema({
   },
 
   pincode: {
-    type: Number,
+    type: String,
   },
 
   country: {

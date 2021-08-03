@@ -1,6 +1,16 @@
 const VendorDB = require("../../modules/vendorModel");
 
+// Load input validations
+const validateRegisterInput = require("../../validation/vendorValidation");
+
 module.exports = (req, res, next) => {
+  const { error, isValid } = validateRegisterInput(req.body);
+
+  // Check Validation
+  if (!isValid) {
+    return res.status(400).json(error);
+  }
+
   const {
     name,
     email,
@@ -27,8 +37,10 @@ module.exports = (req, res, next) => {
   vendor
     .save()
     .then((data) => {
-      res.send(data);
-    })
+      res.status(201).json({
+        msg:"Success", 
+        data:data
+    })})
     .catch((err) => {
       res.status(500).send({
         mesaage: err.message || "some error occured while creating Vendor",

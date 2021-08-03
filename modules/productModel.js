@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 const productSchema = new mongoose.Schema({
-  
   vendorObjectID: {
     type: String,
   },
@@ -35,12 +34,12 @@ const productSchema = new mongoose.Schema({
   },
 
   price: {
-    type: Number,
+    type: String,
     require: true,
   },
 
   discountPrice: {
-    type: Number,
+    type: String,
   },
 
   size: {
@@ -48,7 +47,7 @@ const productSchema = new mongoose.Schema({
   },
 
   qty: {
-    type: Number,
+    type: String,
   },
 });
 
