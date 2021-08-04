@@ -1,17 +1,17 @@
 const AdminDB = require("../../modules/adminModel");
 
 // Load input validations
-// const validateRegisterInput = require("../../validations/addAcademicClass");
+const validateRegisterInput = require("../../validation/adminValidation");
 
 module.exports = (req, res, next) => {
-  //   const { errors, isValid } = validateRegisterInput(req.body);
+    const { errors, isValid } = validateRegisterInput(req.body);
 
   // Check Validation
-  //   if (!isValid) {
-  //     return res.status(400).json(errors);
-  //   }
+    if (!isValid) {
+      return res.status(400).json(errors);
+    }
   const id = req.params.id;
-  AdminDB.findByIdAndUpdate(id, req.body, { userFindAndModify: true })
+  AdminDB.findByIdAndUpdate(id, req.body, {upsert:true,new:true})
     .then((data) => {
       if (!data) {
         res

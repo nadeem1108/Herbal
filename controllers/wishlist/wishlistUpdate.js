@@ -1,19 +1,10 @@
-const CategoryDB = require("../../modules/categoryModel");
+const WishlistDB = require("../../modules/wishlistModel");
 
-// Load input validations
-const validateRegisterInput = require("../../validation/categoryValidation");
 
 module.exports = (req, res, next) => {
-  const { error, isValid } = validateRegisterInput(req.body);
 
-  // Check Validation
-
-  if (!isValid) {
-    return res.status(400).json(error);
-  }
-
-
-  CategoryDB.findByIdAndUpdate(req.params.id, req.body,{upsert:true,new:true})
+ 
+  WishlistDB.findByIdAndUpdate(req.params.id, req.body,{upsert:true,new:true})
     .then((data) => {
       if (!data) {
         res

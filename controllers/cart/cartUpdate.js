@@ -1,19 +1,9 @@
-const CategoryDB = require("../../modules/categoryModel");
-
-// Load input validations
-const validateRegisterInput = require("../../validation/categoryValidation");
+const CartDB = require("../../modules/cartModel");
+const UserDB = require("../../modules/userModel");
+const ProductDB = require("../../modules/productModel");
 
 module.exports = (req, res, next) => {
-  const { error, isValid } = validateRegisterInput(req.body);
-
-  // Check Validation
-
-  if (!isValid) {
-    return res.status(400).json(error);
-  }
-
-
-  CategoryDB.findByIdAndUpdate(req.params.id, req.body,{upsert:true,new:true})
+  CartDB.findByIdAndUpdate(req.body._id,{ qty: req.body.qty },{upsert:true,new:true})
     .then((data) => {
       if (!data) {
         res

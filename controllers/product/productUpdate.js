@@ -12,8 +12,8 @@ module.exports = (req, res, next) => {
     return res.status(400).json(error);
   }
 
-  const id = req.params.id;
-  ProductDB.findByIdAndUpdate(id, req.body, { userFindAndModify: true })
+
+  ProductDB.findByIdAndUpdate(req.params.id, req.body,{upsert:true,new:true})
     .then((data) => {
       if (!data) {
         res

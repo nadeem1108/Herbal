@@ -11,7 +11,7 @@ module.exports = (req, res, next) => {
       return res.status(400).json(errors);
     }
   const id = req.params.id;
-  VendorDB.findByIdAndUpdate(id, req.body, { userFindAndModify: true })
+  VendorDB.findByIdAndUpdate(id, req.body,{upsert:true,new:true})
     .then((data) => {
       if (!data) {
         res
