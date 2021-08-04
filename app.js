@@ -1,16 +1,20 @@
-var createError = require('http-errors');
-var express = require('express');
+var createError = require("http-errors");
+var express = require("express");
 const cors = require("cors");
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+var path = require("path");
+var cookieParser = require("cookie-parser");
+var logger = require("morgan");
 const http = require("http");
 const passport = require("passport");
 // const server = http.createServer(app);
 const dbConnect = require("./config/database");
-
-
 const app = express();
+app.set("views", path.join(__dirname, "views"));
+app.set("view engine", "ejs");
+app.use(express.urlencoded({ extended: false }));
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, "public")));
+
 app.use(express.json());
 app.use(
   express.urlencoded({
@@ -32,7 +36,5 @@ app.use(passport.initialize());
 app.use("/", require("./routes/indexRoute"));
 
 app.listen(process.env.PORT || 5000, () => {
-  console.log(
-    `Server is running at (==> http://localhost:5000 <==)`
-  );
+  console.log(`Server is running at (==> http://localhost:5000 <==)`);
 });

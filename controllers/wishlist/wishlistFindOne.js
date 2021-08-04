@@ -1,9 +1,7 @@
 const WishlistDB = require("../../modules/wishlistModel");
 module.exports = (req, res) => {
   if (req.params.id) {
-    const id = req.params.id;
-    WishlistDB
-      .findById(id)
+    WishlistDB.findById(req.params.id)
       .then((data) => {
         if (!data) {
           res.status(400).send({
@@ -17,8 +15,7 @@ module.exports = (req, res) => {
         res.status(500).send({ message: "error while retriving the data" });
       });
   } else {
-    WishlistDB
-      .find()
+    WishlistDB.find()
       .then((user) => {
         res.send(user);
       })

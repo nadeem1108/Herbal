@@ -1,8 +1,7 @@
 const CartDB = require("../../modules/cartModel");
 module.exports = (req, res) => {
   if (req.params.id) {
-    CartDB
-      .findById(req.params.id)
+    CartDB.findById(req.params.id)
       .then((data) => {
         if (!data) {
           res.status(400).send({
@@ -16,8 +15,7 @@ module.exports = (req, res) => {
         res.status(500).send({ message: "error while retriving the data" });
       });
   } else {
-    CartDB
-      .find()
+    CartDB.find()
       .then((user) => {
         res.send(user);
       })

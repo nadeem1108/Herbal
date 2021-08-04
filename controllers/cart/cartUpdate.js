@@ -1,9 +1,11 @@
 const CartDB = require("../../modules/cartModel");
-const UserDB = require("../../modules/userModel");
-const ProductDB = require("../../modules/productModel");
 
 module.exports = (req, res, next) => {
-  CartDB.findByIdAndUpdate(req.body._id,{ qty: req.body.qty },{upsert:true,new:true})
+  CartDB.findByIdAndUpdate(
+    req.body._id,
+    { qty: req.body.qty },
+    { upsert: true, new: true }
+  )
     .then((data) => {
       if (!data) {
         res

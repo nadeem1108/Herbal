@@ -2,7 +2,6 @@ const CartDB = require("../../modules/cartModel");
 
 module.exports = (req, res) => {
   if (req.query.id) {
-    
     CartDB.findById(req.query.id)
       .then((data) => {
         if (!data) {

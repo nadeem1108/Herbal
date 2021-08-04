@@ -1,10 +1,7 @@
 const WishlistDB = require("../../modules/wishlistModel");
 
 module.exports = (req, res) => {
-  const id = req.params.id;
-
-  WishlistDB
-    .findByIdAndDelete(id)
+  WishlistDB.findByIdAndDelete(req.params.id)
     .then((data) => {
       if (!data) {
         res

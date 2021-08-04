@@ -2,8 +2,8 @@ const WishlistDB = require("../../modules/wishlistModel");
 
 module.exports = (req, res) => {
   if (req.query.id) {
-    const id = req.query.id;
-    WishlistDB.findById(id)
+  
+    WishlistDB.findById(req.query.id)
       .then((data) => {
         if (!data) {
           res.status(400).send({

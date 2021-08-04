@@ -1,10 +1,11 @@
 const WishlistDB = require("../../modules/wishlistModel");
 
-
 module.exports = (req, res, next) => {
-
- 
-  WishlistDB.findByIdAndUpdate(req.params.id, req.body,{upsert:true,new:true})
+  WishlistDB.findByIdAndUpdate(
+    req.body._id,
+    { status: req.body.status },
+    { upsert: true, new: true }
+  )
     .then((data) => {
       if (!data) {
         res

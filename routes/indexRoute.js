@@ -12,6 +12,7 @@ router.use("/admin", require("./adminRoutes"));
 router.use("/user", require("./userRoute"));
 router.use("/cart", require("./cartRoute"));
 router.use("/wishlist", require("./whishlistRoute"));
+router.use("/multer", require("./multerRoute"));
 
 
 module.exports = router;
