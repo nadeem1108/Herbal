@@ -30,7 +30,7 @@ const adminSchema = new mongoose.Schema({
     type: String,
   },
 
-  state: {
+  stateName: {
     type: String,
   },
 

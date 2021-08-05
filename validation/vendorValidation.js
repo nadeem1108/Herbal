@@ -11,6 +11,9 @@ module.exports = function validateRegisterInput(data) {
   if (Validator.isEmpty(data.name)) {
     error.name = "Name field is required";
   }
+  if (!Validator.isLength(data.name, { min: 3, max: 30 })) {
+    error.name = "Name must be between 3 and 30 characters";
+  }
 
   if (Validator.isEmpty(data.email)) {
     error.email = "E-mail field is required";
@@ -18,6 +21,10 @@ module.exports = function validateRegisterInput(data) {
 
   if (Validator.isEmpty(data.password)) {
     error.password = "Password field is required";
+  }
+
+  if (!Validator.isLength(data.password, { min: 6, max: 30 })) {
+    errors.password = "Password must be between 6 and 30 characters";
   }
 
   return {

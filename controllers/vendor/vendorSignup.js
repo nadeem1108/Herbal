@@ -13,7 +13,7 @@ module.exports = (req, res, next) => {
     return res.status(400).json(error);
   }
 
-  const { name, email, password, contact, address, state, pincode } = req.body;
+  const { name, email, password, contact, address, stateName, pincode } = req.body;
   bcrypt.hash(password, 10, function (err, hash) {
     if (err) {
       return res.json({
@@ -27,7 +27,7 @@ module.exports = (req, res, next) => {
         password: hash,
         contact: contact,
         address: address,
-        state: state,
+        stateName: stateName,
         pincode: pincode,
       });
       vendor

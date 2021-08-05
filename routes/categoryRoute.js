@@ -1,21 +1,21 @@
-var express = require('express');
+var express = require("express");
 const router = express.Router();
 
+//middleware
+const auth = require("../middleware/auth");
 
 //  Add Controllers
-const categoryCreate = require('../controllers/category/categoryCreate')
-const categoryFind = require('../controllers/category/categoryFind')
-const categoryFindOne = require('../controllers/category/categoryFindOne')
-const categoryUpdate = require('../controllers/category/categoryUpdate')
-const categoryDelete = require('../controllers/category/categoryDelete')
-
-
+const categoryCreate = require("../controllers/category/categoryCreate");
+const categoryFind = require("../controllers/category/categoryFind");
+const categoryFindOne = require("../controllers/category/categoryFindOne");
+const categoryUpdate = require("../controllers/category/categoryUpdate");
+const categoryDelete = require("../controllers/category/categoryDelete");
 
 //  Routes
-router.post("/create", categoryCreate);
-router.get("/find",  categoryFind);
-router.get("/find/:id",  categoryFindOne);
-router.put("/update/:id",  categoryUpdate);
-router.delete("/delete/:id",  categoryDelete);
+router.post("/create", auth, categoryCreate);
+router.get("/find", auth, categoryFind);
+router.get("/find/:id", auth, categoryFindOne);
+router.put("/update/:id", auth, categoryUpdate);
+router.delete("/delete/:id", auth, categoryDelete);
 
 module.exports = router;

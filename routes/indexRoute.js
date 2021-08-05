@@ -2,6 +2,9 @@ const express = require("express");
 const router = express.Router();
 
 
+//middleware
+const auth = require("../middleware/auth");
+
 //  List of All route paths
 
 router.use("/category", require("./categoryRoute"));

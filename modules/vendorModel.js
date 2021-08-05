@@ -38,7 +38,7 @@ const vendorSchema = new mongoose.Schema({
     type: String,
   },
 
-  state: {
+  stateName: {
     type: String,
   },
 
