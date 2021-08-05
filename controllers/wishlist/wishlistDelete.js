@@ -10,6 +10,7 @@ module.exports = (req, res) => {
       } else {
         res.send({
           message: "Product was removed successfully!",
+          data: data,
         });
       }
     })

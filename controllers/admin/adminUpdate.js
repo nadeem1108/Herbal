@@ -4,21 +4,24 @@ const AdminDB = require("../../modules/adminModel");
 const validateRegisterInput = require("../../validation/adminValidation");
 
 module.exports = (req, res, next) => {
-    const { errors, isValid } = validateRegisterInput(req.body);
+  const { errors, isValid } = validateRegisterInput(req.body);
 
   // Check Validation
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   const id = req.params.id;
-  AdminDB.findByIdAndUpdate(id, req.body, {upsert:true,new:true})
+  AdminDB.findByIdAndUpdate(id, req.body, { upsert: true, new: true })
     .then((data) => {
       if (!data) {
         res
           .status(400)
           .send({ message: "error whie finding Admin of particular id" });
       } else {
-        res.send(data);
+        res.status(200).json({
+          data: data,
+          msg: "updated succesfully",
+        });
       }
     })
     .catch((err) => {

@@ -13,6 +13,7 @@ module.exports = (req, res) => {
       } else {
         res.send({
           message: "Vendor was deleted successfully!",
+          data: data,
         });
       }
     })
