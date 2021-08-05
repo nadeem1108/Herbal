@@ -1,7 +1,7 @@
 const AdminDB = require("../../modules/adminModel");
 
 // Load input validations
-const validateRegisterInput = require("../../validation/adminValidation");
+const validateRegisterInput = require("../../validation/adminUpdateValidation");
 
 module.exports = (req, res, next) => {
   const { errors, isValid } = validateRegisterInput(req.body);

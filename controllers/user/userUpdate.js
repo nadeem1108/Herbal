@@ -1,17 +1,17 @@
 const UserDB = require("../../modules/userModel");
 
 // Load input validations
-const validateRegisterInput = require("../../validation/userValidation");
+const validateRegisterInput = require("../../validation/userUpdateValidation");
 
 module.exports = (req, res, next) => {
-    const { errors, isValid } = validateRegisterInput(req.body);
+  const { errors, isValid } = validateRegisterInput(req.body);
 
   // Check Validation
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   const id = req.params.id;
-  UserDB.findByIdAndUpdate(id, req.body,{upsert:true,new:true})
+  UserDB.findByIdAndUpdate(id, req.body, { upsert: true, new: true })
     .then((data) => {
       if (!data) {
         res

@@ -1,7 +1,7 @@
 const VendorDB = require("../../modules/vendorModel");
 
 // Load input validations
-const validateRegisterInput = require("../../validation/vendorValidation");
+const validateRegisterInput = require("../../validation/vendorUpdateValidtion");
 
 module.exports = (req, res, next) => {
     const { errors, isValid } = validateRegisterInput(req.body);
