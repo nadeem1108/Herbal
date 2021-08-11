@@ -15,7 +15,7 @@ const cartDelete = require("../controllers/cart/cartDelete");
 router.post("/create", auth, cartCreate);
 router.get("/find", auth, cartFind);
 router.get("/find/:id", auth, cartFindOne);
-router.post("/update", auth, cartUpdate);
+router.put("/update/:id", auth, cartUpdate);
 router.delete("/delete/:id", auth, cartDelete);
 
 module.exports = router;

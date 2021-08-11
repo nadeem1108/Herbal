@@ -3,18 +3,18 @@ const mongoose = require("mongoose");
 const vendorSchema = new mongoose.Schema({
   name: {
     type: String,
-    require:true,
+    require: true,
   },
 
   email: {
     type: String,
     unique: true,
-    require:true,
+    require: true,
   },
 
   password: {
     type: String,
-    require:true,
+    require: true,
   },
 
   contact: {
@@ -49,6 +49,11 @@ const vendorSchema = new mongoose.Schema({
   country: {
     type: String,
     default: "INDIA",
+  },
+  status: {
+    type: String,
+    require: true,
+    default: 0,
   },
 });
 

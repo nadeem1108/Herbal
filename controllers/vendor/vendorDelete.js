@@ -11,10 +11,7 @@ module.exports = (req, res) => {
           .status(404)
           .send({ message: `Cannot Delete with id ${id}. Maybe id is wrong` });
       } else {
-        res.send({
-          message: "Vendor was deleted successfully!",
-          data: data,
-        });
+        res.redirect("/admin/list");
       }
     })
     .catch((err) => {

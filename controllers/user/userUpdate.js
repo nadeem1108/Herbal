@@ -4,11 +4,11 @@ const UserDB = require("../../modules/userModel");
 const validateRegisterInput = require("../../validation/userUpdateValidation");
 
 module.exports = (req, res, next) => {
-  const { errors, isValid } = validateRegisterInput(req.body);
+  const { error, isValid } = validateRegisterInput(req.body);
 
   // Check Validation
   if (!isValid) {
-    return res.status(400).json(errors);
+    return res.status(400).json(error);
   }
   const id = req.params.id;
   UserDB.findByIdAndUpdate(id, req.body, { upsert: true, new: true })

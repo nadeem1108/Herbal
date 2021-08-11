@@ -23,9 +23,10 @@ module.exports = (req, res, next) => {
     .save(category)
     .then((data) => {
       res.status(201).json({
-        msg:"Data added successfully", 
-        data:data
-    })})
+        msg: "Data added successfully",
+        data: data,
+      });
+    })
     .catch((err) => {
       res.status(500).send({
         mesaage: err.message || "some error occured while creating data",

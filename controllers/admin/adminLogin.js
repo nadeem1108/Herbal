@@ -1,5 +1,7 @@
 var bcrypt = require('bcryptjs');
 var jwt = require('jsonwebtoken');
+var LocalStorage = require('node-localstorage').LocalStorage,
+    localStorage = new LocalStorage('./scratch');
 var AdminDB = require('../../modules/adminModel');
 
     if (typeof localStorage === "undefined" || localStorage === null) {
@@ -10,19 +12,17 @@ var AdminDB = require('../../modules/adminModel');
 
 module.exports=(req, res, next)=>{
       const {email,password} =req.body;
+      console.log(req.body);
       AdminDB.findOne({email:email})
       .exec()
       .then(result=>{
+        console.log(result);
         if(result.length<1){
-          res.status(201).json({
-            msg:"Invalid user information",
-          });
+          res.redirect(400,'/admin')
         }else{
           bcrypt.compare(password,result.password,function(err, data){
             if(err){
-              res.status(201).json({
-                msg:"Authorization faild",
-              });
+              res.redirect('/admin',{msg:"login Faild", result:err})
             }
             if(data){
               var authtoken = jwt.sign(
@@ -36,22 +36,17 @@ module.exports=(req, res, next)=>{
                   expiresIn:"12h"
                 }
               );
-              res.status(201).json({
-                msg:"Login Succesfully",
-                authtoken:authtoken
-              });
+              localStorage.setItem("etoken",authtoken);
+              res.redirect('/admin/dashboard')
               }else{
-              res.json({
-                msg:"User password wrong",
-              });
+                req.flash("success", `Good to see you agian`);
+                res.redirect('/admin')
             }
           })
         }
         
       })
       .catch(err=>{
-        res.json({
-          error:err
-        })
+        res.redirect(400,'/admin')
       })
 }

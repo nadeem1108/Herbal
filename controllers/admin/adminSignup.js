@@ -33,6 +33,7 @@ module.exports = (req, res, next) => {
       admin
         .save()
         .then((result) => {
+          // res.render("signupForm")
           res.status(201).json({
             msg: "Data Added successfully",
             result: result,

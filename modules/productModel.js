@@ -49,6 +49,11 @@ const productSchema = new mongoose.Schema({
   qty: {
     type: String,
   },
+  status: {
+    type: String,
+    require: true,
+    default: 0,
+  },
 });
 
 const Product = mongoose.model("Product", productSchema);

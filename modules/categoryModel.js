@@ -23,8 +23,11 @@ const categorySchema = new mongoose.Schema({
     default: Date.now,
   },
 
+
   status: {
     type: String,
+    require: true,
+    default: 0,
   },
 });
 

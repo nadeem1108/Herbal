@@ -29,6 +29,8 @@ const subCategorySchema = new mongoose.Schema({
 
   status: {
     type: String,
+    require: true,
+    default: 0,
   },
   
 });

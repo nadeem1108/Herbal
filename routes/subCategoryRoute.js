@@ -13,8 +13,8 @@ const subCategoryDelete = require("../controllers/SubCategory/subCategoryDelete"
 
 //  Routes
 router.post("/create", auth, subCategoryCreate);
-router.get("/find", auth, subCategoryFind);
-router.get("/find/:id", auth, subCategoryFindOne);
+router.get("/find",  subCategoryFind);
+router.get("/find/:id", subCategoryFindOne);
 router.put("/update/:id", auth, subCategoryUpdate);
 router.delete("/delete/:id", auth, subCategoryDelete);
 

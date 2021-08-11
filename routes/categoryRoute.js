@@ -13,8 +13,8 @@ const categoryDelete = require("../controllers/category/categoryDelete");
 
 //  Routes
 router.post("/create", auth, categoryCreate);
-router.get("/find", auth, categoryFind);
-router.get("/find/:id", auth, categoryFindOne);
+router.get("/find",  categoryFind);
+router.get("/find/:id",  categoryFindOne);
 router.put("/update/:id", auth, categoryUpdate);
 router.delete("/delete/:id", auth, categoryDelete);
 

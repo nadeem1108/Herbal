@@ -13,8 +13,8 @@ const productDelete = require("../controllers/product/productDelete");
 
 //  Routes
 router.post("/create", auth, productCreate);
-router.get("/find", auth, productFind);
-router.get("/find/:id", auth, productFindOne);
+router.get("/find",  productFind);
+router.get("/find/:id", productFindOne);
 router.put("/update/:id", auth, productUpdate);
 router.delete("/delete/:id", auth, productDelete);
 

@@ -25,6 +25,11 @@ const userSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
+  status: {
+    type: String,
+    require: true,
+    default: 0,
+  },
 });
 
 const UserDB = mongoose.model("UserDB", userSchema);
